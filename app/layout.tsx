@@ -14,7 +14,7 @@ const fredoka = Fredoka({
 });
 
 export const metadata: Metadata = {
-  title: "(CRM) Proptzo",
+  title: "Proptzo | CRM",
   description: "(CRM) Proptzo",
   icons: {
     icon: "/favicon.svg",
