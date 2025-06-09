@@ -4,17 +4,30 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
+// Components
+import Avatar from "./reusables/avatars/Avatar";
+
 // React Icons
-import { AiOutlineAppstoreAdd, AiOutlineHeart } from "react-icons/ai";
-import { IoIosArrowDown } from "react-icons/io";
+import {
+  AiOutlineAppstoreAdd,
+  AiOutlineHeart,
+  AiOutlineProject,
+} from "react-icons/ai";
+import { IoIosArrowDown, IoIosStats } from "react-icons/io";
 import { LuBookmark, LuBuilding, LuUserCog } from "react-icons/lu";
 import {
+  MdDomainDisabled,
+  MdFollowTheSigns,
   MdOutlineAddHome,
   MdOutlineAddHomeWork,
+  MdOutlineAnalytics,
+  MdOutlineAssignmentInd,
   MdOutlineContactPage,
   MdOutlineInsights,
+  MdOutlineLeaderboard,
   MdOutlineLocalActivity,
   MdOutlinePayment,
+  MdOutlineRecentActors,
 } from "react-icons/md";
 import {
   TbBuildingCog,
@@ -23,9 +36,19 @@ import {
   TbHelpSquareRounded,
   TbLocationCog,
   TbMoneybag,
+  TbPackageImport,
   TbReportSearch,
+  TbSubtask,
+  TbTimelineEventText,
 } from "react-icons/tb";
-import { VscCircle } from "react-icons/vsc";
+import { VscCircle, VscFileMedia } from "react-icons/vsc";
+import { SiCivicrm, SiGoogleadsense } from "react-icons/si";
+import { CgPerformance } from "react-icons/cg";
+import { TiGroupOutline } from "react-icons/ti";
+import { BiTask } from "react-icons/bi";
+import { GrSchedulePlay } from "react-icons/gr";
+import { SlCalender } from "react-icons/sl";
+import { PiMicrosoftTeamsLogoDuotone } from "react-icons/pi";
 
 export default function Sidebar({
   isSidebarOpen,
@@ -210,86 +233,125 @@ export default function Sidebar({
     </div>
   );
 
+  const User = ({
+    img,
+    name,
+    userType,
+  }: {
+    img?: string;
+    name?: string;
+    userType?: string;
+  }) => (
+    <div className="w-full bg-white/10 px-6 py-2 sm:px-8 flex items-center justify-start gap-2">
+      <Avatar alt={name} img={img} />
+      <div className="w-full flex flex-col items-start">
+        <h6 className="text-sm font-semibold capitalize w-full line-clamp-1">
+          {name}
+        </h6>
+        <h6 className="text-xs font-semibold capitalize w-full line-clamp-1 text-gray-400">
+          {userType}
+        </h6>
+      </div>
+      <h6 className="text-xs font-semibold capitalize text-primary shrink-0 underline cursor-pointer">
+        sign out
+      </h6>
+    </div>
+  );
+
   return (
     <div
-      className={`z-10 pb-20 sm:pb-0 fixed top-0 w-72 h-[calc(100vh-0px)] bg-[#242424] text-white lg:border-r border-white/10 shadow-lg overflow-y-scroll scrollbar-hidden py-4 shrink-0 transition-transform duration-300 transform
+      className={`z-10 pb-20 sm:pb-10 fixed top-0 w-72 h-[calc(100vh-0px)] bg-[#242424] text-white lg:border-r border-white/10 shadow-lg overflow-y-scroll scrollbar-hidden py-4 shrink-0 transition-transform duration-300 transform
     ${isSidebarOpen ? "translate-x-0 border-r" : "-translate-x-full"}
     lg:translate-x-0
   `}
     >
+      <Category label="session info">
+        <User name="gurdeep singh" userType="builder" />
+      </Category>
       <Category label="general">
-        <Option
-          icon={AiOutlineAppstoreAdd}
-          label="(CRM) dashboard"
-          link="/"
-        />
+        <Option icon={AiOutlineAppstoreAdd} label="(CRM) dashboard" link="/" />
         <Option icon={LuUserCog} label="profile" link="/dashboard/profile" />
-        <Group
-          icon={TbFolderCog}
-          label="preferences"
-          options={[
-            {
-              label: "property filters",
-              icon: TbBuildingCog,
-            },
-            {
-              label: "project filters",
-              icon: TbFilterCog,
-              // link: "/dashboard",
-            },
-            {
-              label: "location filters",
-              icon: TbLocationCog,
-            },
-          ]}
-        />
       </Category>
       <Category label="dashboard">
         <Option
-          icon={MdOutlineInsights}
-          label="insights"
+          icon={PiMicrosoftTeamsLogoDuotone}
+          label="team performance"
+          link="/dashboard/insights"
+        />
+        <Option
+          icon={MdOutlineAnalytics}
+          label="project sales analytics"
           link="/dashboard/insights"
         />
         <Group
-          icon={MdOutlineLocalActivity}
-          label="my activities"
+          icon={IoIosStats}
+          label="qucik stats"
           options={[
             {
-              label: "recent searches",
-              icon: TbReportSearch,
+              label: "active projects",
+              icon: AiOutlineProject,
             },
             {
-              label: "wishlist",
-              icon: AiOutlineHeart,
+              label: "leads",
+              icon: MdOutlineLeaderboard,
             },
             {
-              label: "saved / shortlist",
-              icon: LuBookmark,
+              label: "follow-ups today",
+              icon: MdFollowTheSigns,
             },
             {
-              label: "contacted",
-              icon: MdOutlineContactPage,
+              label: "performance graphs",
+              icon: CgPerformance,
             },
           ]}
         />
+        <Option label="unread inquiries" icon={TiGroupOutline} />
+        <Option label="recent bookings" icon={MdOutlineRecentActors} />
+        <Option label="overdue tasks" icon={TbSubtask} />
       </Category>
       <Category label="listings">
-        <Option label="my properties" icon={LuBuilding} />
-        <Option
-          label="add project"
-          icon={MdOutlineAddHomeWork}
-          link="/project/add-project"
+        <Group
+          icon={LuBuilding}
+          label="my properties"
+          options={[
+            {
+              label: "view / edit",
+            },
+            {
+              label: "add new property",
+              icon: MdOutlineAddHome,
+            },
+          ]}
         />
-        <Option
-          label="add property"
-          icon={MdOutlineAddHome}
-          link="/property/add-property"
+        <Group
+          label="my projects"
+          icon={AiOutlineProject}
+          options={[
+            {
+              label: "view / edit",
+            },
+            {
+              label: "add new project",
+              icon: MdOutlineAddHomeWork,
+            },
+          ]}
         />
+        <Option label="units management" icon={MdDomainDisabled} />
+        <Option label="documents & media" icon={VscFileMedia} />
       </Category>
-      <Category label="transactions">
-        <Option label="payment history" icon={TbMoneybag} />
-        <Option label="current plan" icon={MdOutlinePayment} />
-        <Option label="help & support" icon={TbHelpSquareRounded} />
+      <Category label="leads management">
+        <Option label="all leads" icon={MdOutlineLeaderboard} />
+        <Option label="lead assignment" icon={MdOutlineAssignmentInd} />
+        <Option label="lead activity timeline" icon={TbTimelineEventText} />
+        <Option label="lead import" icon={TbPackageImport} />
+      </Category>
+      <Category label="follow-ups / tasks">
+        <Option label="my tasks" icon={BiTask} />
+        <Option label="follow-up scheduler" icon={GrSchedulePlay} />
+        <Option label="calender view" icon={SlCalender} />
+      </Category>
+      <Category label="settings">
+        <Option label="CRM branding" icon={SiCivicrm} />
       </Category>
     </div>
   );
