@@ -8,13 +8,9 @@ import React, { useEffect, useState } from "react";
 import Avatar from "./reusables/avatars/Avatar";
 
 // React Icons
-import {
-  AiOutlineAppstoreAdd,
-  AiOutlineHeart,
-  AiOutlineProject,
-} from "react-icons/ai";
+import { AiOutlineAppstoreAdd, AiOutlineProject } from "react-icons/ai";
 import { IoIosArrowDown, IoIosStats } from "react-icons/io";
-import { LuBookmark, LuBuilding, LuUserCog } from "react-icons/lu";
+import { LuBuilding, LuUserCog } from "react-icons/lu";
 import {
   MdDomainDisabled,
   MdFollowTheSigns,
@@ -22,27 +18,16 @@ import {
   MdOutlineAddHomeWork,
   MdOutlineAnalytics,
   MdOutlineAssignmentInd,
-  MdOutlineContactPage,
-  MdOutlineInsights,
   MdOutlineLeaderboard,
-  MdOutlineLocalActivity,
-  MdOutlinePayment,
   MdOutlineRecentActors,
 } from "react-icons/md";
 import {
-  TbBuildingCog,
-  TbFilterCog,
-  TbFolderCog,
-  TbHelpSquareRounded,
-  TbLocationCog,
-  TbMoneybag,
   TbPackageImport,
-  TbReportSearch,
   TbSubtask,
   TbTimelineEventText,
 } from "react-icons/tb";
 import { VscCircle, VscFileMedia } from "react-icons/vsc";
-import { SiCivicrm, SiGoogleadsense } from "react-icons/si";
+import { SiCivicrm } from "react-icons/si";
 import { CgPerformance } from "react-icons/cg";
 import { TiGroupOutline } from "react-icons/ti";
 import { BiTask } from "react-icons/bi";
