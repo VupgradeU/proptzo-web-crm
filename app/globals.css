@@ -53,3 +53,11 @@
 .animate-wave.delay-400 {
   animation-delay: 0.4s;
 }
+
+/* Bug Fixes */
+/* Dashboard Layout Fix */
+@media (max-width: 1024px) {
+  .dash-main-content {
+    width: 100% !important;
+  }
+}
