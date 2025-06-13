@@ -59,7 +59,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setSidebarOpen}
       />
-      <main className="w-full mb-16 sm:mb-0 lg:ml-72">
+      <main
+        className="mb-16 sm:mb-0 lg:ml-72 dash-main-content"
+        style={{ width: "calc(100% - 288px)" }}
+      >
         <div className="flex flex-col gap-3">
           <nav
             aria-label="breadcrumb"
